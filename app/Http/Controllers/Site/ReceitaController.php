@@ -16,6 +16,8 @@ class ReceitaController extends Controller
     }
 
     public function show($id) {
-        return view('site.receita.show');
+        $receita = Receita::findOrFail($id);
+
+        return view('site.receita.show', ['receita' => $receita]);
     }
 }

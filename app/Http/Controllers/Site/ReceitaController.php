@@ -20,4 +20,21 @@ class ReceitaController extends Controller
 
         return view('site.receita.show', ['receita' => $receita]);
     }
+
+    public function create() {
+        return view('site.receita.create');
+    }
+
+    public function store(Request $request) {
+        // dd($request->all());
+
+        $receita = Receita::create($request->all());
+
+        if ($receita) {
+            return redirect()->route('receitas.index');
+        }
+        else {
+            return redirect()->route('receitas.create');
+        }
+    }
 }

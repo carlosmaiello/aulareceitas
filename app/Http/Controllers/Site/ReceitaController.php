@@ -37,4 +37,21 @@ class ReceitaController extends Controller
             return redirect()->route('receitas.create');
         }
     }
+
+    public function edit($id) {
+        $receita = Receita::findOrFail($id);
+        return view('site.receita.edit', ['receita' => $receita]);
+    }
+
+    public function update(Request $request, $id) {
+        $receita = Receita::findOrFail($id);
+        $receita->update($request->all());
+
+        if ($receita) {
+            return redirect()->route("receitas.show", $receita->id);
+        }
+        else {
+            return redirect()->route("receitas.edit", $receita->id);
+        }
+    }
 }

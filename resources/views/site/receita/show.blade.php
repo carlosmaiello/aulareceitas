@@ -1,6 +1,7 @@
 <html>
     <body>
         <h1>{{ $receita->titulo }}</h1>
+        <a href="{{ route('receitas.edit', $receita->id) }}">Alterar</a>
 
         <h2>Ingredientes</h2>
         <p>{{ $receita->ingredientes }}</p>

@@ -2,6 +2,7 @@
     <body>
         <h1>{{ $receita->titulo }}</h1>
         <a href="{{ route('receitas.edit', $receita->id) }}">Alterar</a>
+        <a href="{{ route('receitas.delete', $receita->id)}}">Excluir</a>
 
         <h2>Ingredientes</h2>
         <p>{{ $receita->ingredientes }}</p>

@@ -54,4 +54,5 @@ class ReceitaController extends Controller
             return redirect()->route("receitas.edit", $receita->id);
         }
     }
+        $receita->delete();
 }

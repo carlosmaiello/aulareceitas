@@ -2,6 +2,12 @@
     <body>
         <h1>Alterando a receita</h1>
 
+        @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    @endif
+
         <form method="post" action="{{ route('receitas.update', $receita->id) }}">
             @method('PUT')
             @csrf

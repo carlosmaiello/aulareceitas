@@ -26,7 +26,14 @@ class ReceitaController extends Controller
     }
 
     public function store(Request $request) {
-        // dd($request->all());
+
+        $request->validate([
+            'titulo' => ['required', 'unique:receitas', 'max:255'],
+            'ingredientes' => ['required'],
+            'modo_preparo' => ['required'],
+            'tempo_preparo' => ['required'],
+            'porcoes' => ['required'],
+        ]);
 
         $receita = Receita::create($request->all());
 
@@ -44,6 +51,14 @@ class ReceitaController extends Controller
     }
 
     public function update(Request $request, $id) {
+        $request->validate([
+            'titulo' => ['required', 'unique:receitas', 'max:255'],
+            'ingredientes' => ['required'],
+            'modo_preparo' => ['required'],
+            'tempo_preparo' => ['required'],
+            'porcoes' => ['required'],
+        ]);
+        
         $receita = Receita::findOrFail($id);
         $receita->update($request->all());
 
@@ -54,5 +69,11 @@ class ReceitaController extends Controller
             return redirect()->route("receitas.edit", $receita->id);
         }
     }
+
+    public function destroy($id) {
+        $receita = Receita::findOrFail($id);
         $receita->delete();
+
+        return redirect()->route("receitas.index");
+    }
 }

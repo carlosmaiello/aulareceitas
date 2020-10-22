@@ -2,6 +2,12 @@
     <body>
         <h1>Nova Receita</h1>
 
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <p>{{ $error }}</p>
+            @endforeach
+        @endif
+
         <form method="POST" action="{{ route('receitas.store') }}">
             @csrf
             <div>
